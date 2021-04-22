@@ -1,5 +1,6 @@
-.example-card {
-  max-width: 400px;
+.card {
+  // max-width: 400px;
+  width: 100%;
   cursor: pointer;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   background: #002b5c;
@@ -8,7 +9,7 @@
 }
 
 .example-header-image {
-  background-image: url("https://randomuser.me/api/portraits/men/91.jpg");
+  background-image: url("http://uitheme.net/sociala/images/user-8.png");
   background-size: cover;
 }
 
