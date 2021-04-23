@@ -1,6 +1,6 @@
-# Angular-Rock-Paper-Scissors
-Rock, Paper, Scissors Game
+# Feedly
+Newsfeed application built with Angular 11
 
 # Screen Shots
 
-![Image](https://github.com/zimejin/Angular-Rock-Paper-Scissors/blob/main/design/desktop-preview.jpg?raw=true)
+![Image](https://github.com/zimejin/Newsfeed-app/blob/main/localhost_4000_user-feed(iPhone%20X).png?raw=true)
