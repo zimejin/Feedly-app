@@ -1,11 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Feeds } from '../shared/models';
 
-export interface Feeds {
-  type: string;
-  photo?: string;
-  post?: string;
-  video?: string;
-}
 @Component({
   selector: 'app-user-feed',
   templateUrl: './user-feed.component.html',
@@ -32,8 +27,5 @@ export class UserFeedComponent implements OnInit {
         type: 'video',
       },
     ];
-
-    console.log(this.feeds);
-    
   }
 }
