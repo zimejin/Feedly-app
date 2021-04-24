@@ -58,6 +58,20 @@ button {
   margin: 1rem;
 }
 
+// Style for photos
+div.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.image {
+  border-radius: 0.3rem !important;
+  width: 100% !important;
+  vertical-align: middle;
+}
+
+// style for videos
 .video-btn {
   display: block;
   position: relative;

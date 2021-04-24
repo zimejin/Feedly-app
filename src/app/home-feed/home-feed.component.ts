@@ -4,7 +4,17 @@ import { Feeds } from '../shared/models';
 
 @Component({
   selector: 'app-home-feed',
-  templateUrl: './home-feed.component.html',
+  template: `
+    <div class="content mat-elevation-z8">
+      <ng-container *ngFor="let feed of feeds">
+        <span>
+          <p>
+            <app-post [post]="feed"></app-post>
+          </p>
+        </span>
+      </ng-container>
+    </div>
+  `,
   styleUrls: ['./home-feed.component.scss'],
 })
 export class HomeFeedComponent implements OnInit {

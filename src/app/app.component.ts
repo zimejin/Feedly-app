@@ -47,6 +47,7 @@ export class AppComponent {
 
   showFeed(user: User) {
     console.log(user);
+    
     this.router.navigate(['./user-feed']);
   }
 }
