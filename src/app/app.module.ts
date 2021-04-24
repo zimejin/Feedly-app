@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 
 const components = [
+  AppComponent,
   VideoPostComponent,
   PostsComponent,
   PhotoComponent,
@@ -24,7 +25,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...components],
+  declarations: [...components],
   imports: [
     BrowserModule,
     CommonModule,
