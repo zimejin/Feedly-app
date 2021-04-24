@@ -15,19 +15,19 @@ export class AppComponent {
 
   contacts = [
     {
-      name: '@WyattMorris',
+      name: 'Wyatt Morris',
       avatar: 'http://uitheme.net/sociala/images/user-8.png',
-      status: 'Wyatt Morris',
+      status: 'Busy',
     },
     {
-      name: '@WyattMorris',
+      name: 'Wyatt Morris',
       avatar: 'http://uitheme.net/sociala/images/user-8.png',
-      status: 'Wyatt Morris',
+      status: 'Busy',
     },
     {
-      name: '@WyattMorris',
+      name: 'Wyatt Morris',
       avatar: 'http://uitheme.net/sociala/images/user-8.png',
-      status: 'Wyatt Morris',
+      status: 'Busy',
     },
   ];
 
@@ -47,6 +47,6 @@ export class AppComponent {
 
   showFeed(user: User) {
     console.log(user);
-    this.router.navigate(['./user-feed'])
+    this.router.navigate(['./user-feed']);
   }
 }

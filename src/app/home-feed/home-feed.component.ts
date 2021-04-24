@@ -15,6 +15,12 @@ export class HomeFeedComponent implements OnInit {
   ngOnInit(): void {
     this.feeds = [
       {
+        type: 'text',
+      },
+      {
+        type: 'text',
+      },
+      {
         type: 'photo',
       },
       {
@@ -24,7 +30,7 @@ export class HomeFeedComponent implements OnInit {
         type: 'text',
       },
       {
-        type: 'video',
+        type: 'text',
       },
     ];
   }

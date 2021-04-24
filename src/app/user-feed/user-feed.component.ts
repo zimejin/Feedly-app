@@ -17,12 +17,7 @@ export class UserFeedComponent implements OnInit {
       {
         type: 'photo',
       },
-      {
-        type: 'text',
-      },
-      {
-        type: 'text',
-      },
+
       {
         type: 'video',
       },

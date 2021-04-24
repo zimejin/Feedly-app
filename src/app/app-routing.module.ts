@@ -5,6 +5,10 @@ import { UserFeedComponent } from './user-feed/user-feed.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: HomeFeedComponent,
+  },
+  {
     path: 'user-feed',
     component: UserFeedComponent,
   },
