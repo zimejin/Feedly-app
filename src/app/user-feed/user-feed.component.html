@@ -1,17 +1,9 @@
 <div class="content mat-elevation-z8">
   <ng-container *ngFor="let feed of feeds">
-    <ng-container [ngSwitch]="feed?.type">
-      <span>
-        <p *ngSwitchCase="'photo'">
-          <app-photo-post></app-photo-post>
-        </p>
-        <p *ngSwitchCase="'text'">
-          <app-text-post></app-text-post>
-        </p>
-        <p *ngSwitchCase="'video'">
-          <app-video-post></app-video-post>
-        </p>
-      </span>
-    </ng-container>
+    <span>
+      <p>
+        <app-post [post]="feed"></app-post>
+      </p>
+    </span>
   </ng-container>
 </div>

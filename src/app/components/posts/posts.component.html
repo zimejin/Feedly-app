@@ -6,12 +6,31 @@
   </mat-card-header>
 
   <mat-card-content>
-    <p class="post-text-content">
+    <a href="default-video.html" class="video-btn" *ngIf="post?.video">
+      <video autoplay="" loop="" class="video">
+        <source
+          src="http://uitheme.net/sociala/images/v-2.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </a>
+    <p class="post-text-content" *ngIf="post.post">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla
       dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis
       pharetra. Proin blandit ac massa sed rhoncus
       <a href="#" class="more">See more</a>
     </p>
+    <div class="row" *ngIf="post?.photo">
+      <div class="container">
+        <a href="images/t-30.jpg" data-lightbox="roadtr">
+          <img
+            src="http://uitheme.net/sociala/images/t-30.jpg"
+            class="image"
+            alt="image"
+          />
+        </a>
+      </div>
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-fab color="accent">
