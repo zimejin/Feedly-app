@@ -21,9 +21,10 @@ export class FirestoreService {
 
   // Returns the news feeds for all contacts
   newsFeedAll(): Observable<Feeds[]> {
-    return this.firestore.collection('feeds').valueChanges() as Observable<
-      Feeds[]
-    >;
+    const feeds = this.firestore
+      .collection('feeds')
+      .valueChanges() as Observable<Feeds[]>;
+    return feeds;
   }
 
   // Fetch user feed using user id

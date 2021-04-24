@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FirestoreService } from '../services/firestore.service';
-import { Feeds } from '../shared/models';
+import { FirestoreService } from '../../services/firestore.service';
+import { Feeds } from '../../shared/models';
 
 @Component({
   selector: 'app-user-feed',

@@ -1,6 +1,6 @@
 export interface Feeds {
   photo?: string;
-  post?: string;
+  message?: string;
   video?: string;
   user: string;
   id: number;
