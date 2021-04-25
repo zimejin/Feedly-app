@@ -1,0 +1,135 @@
+mat-card .card {
+  max-width: 400px;
+  min-width: 400px;
+}
+
+@media (min-width: 576px) {
+  .card {
+    max-width: 550px;
+    min-width: 550px;
+  }
+}
+
+.example-header-image {
+  background-image: url("https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ");
+  background-size: cover;
+}
+
+mat-card {
+  border-radius: 15px !important;
+}
+a {
+  text-decoration: none;
+  outline: none;
+}
+.more {
+  font-weight: 600;
+  color: #1e74fd !important;
+}
+
+.post-text-content {
+  color: #adb5bd !important;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+mat-card-subtitle {
+  color: #adb5bd !important;
+  font-weight: 500 !important;
+}
+
+mat-card-title {
+  font-weight: 700 !important;
+  color: #212529 !important;
+  font-size: 12px !important;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.5rem !important;
+
+  mat-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+  }
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.mt-3 {
+  margin-top: 1rem !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+}
+
+.card {
+  margin: 1rem;
+}
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.position-absolute {
+  position: absolute !important;
+}
+.top-5 {
+  top: 3px !important;
+}
+figure {
+  margin: 0 0 1rem;
+}
+.fw-500 {
+  font-weight: 500 !important;
+}
+.text-grey-500 {
+  color: #adb5bd !important;
+}
+.ps-5 {
+  padding-left: 3rem !important;
+}
+.p-2 {
+  padding: 0.5rem !important;
+}
+.w-100 {
+  width: 96.4% !important;
+}
+.rounded-xxl {
+  border-radius: 15px !important;
+}
+.border-light-md {
+  border: 2px #f1f1f1 solid;
+}
+.font-xssss {
+  font-size: 12px !important;
+}
+.h100 {
+  height: 100px !important;
+}
+textarea {
+  resize: vertical;
+}
+.rounded-circle {
+  border-radius: 50% !important;
+}
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%) !important;
+}
+.w30 {
+  width: 30px !important;
+}
+img,
+svg {
+  vertical-align: middle;
+}

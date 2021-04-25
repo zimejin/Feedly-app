@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 const components = [
   AppComponent,
@@ -22,7 +23,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [...components],
+  declarations: [...components, CreatePostComponent],
   imports: [
     BrowserModule,
     CommonModule,

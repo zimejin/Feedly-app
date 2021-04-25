@@ -7,13 +7,23 @@ import { Feeds } from '../../shared/models';
   selector: 'app-home-feed',
   template: `
     <div class="content mat-elevation-z8">
-      <ng-container *ngFor="let feed of feeds | async">
+      <!-- Create Post -->
+      <span>
+        <p>
+          <app-create-post></app-create-post>
+        </p>
+      </span>
+      <!-- Create Post Ends -->
+
+      <!-- NewsFeeds -->
+      <ng-container *ngFor="let feed of feeds | async; let i = index">
         <span>
           <p>
             <app-post [post]="feed"></app-post>
           </p>
         </span>
       </ng-container>
+      <!-- NewsFeeds Ends -->
     </div>
   `,
   styleUrls: ['./home-feed.component.scss'],

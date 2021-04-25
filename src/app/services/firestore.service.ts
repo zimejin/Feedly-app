@@ -36,4 +36,9 @@ export class FirestoreService {
   addFeed(id: number, data: any) {
     return;
   }
+
+  // Add new feed. Video, Photo, Text from the app
+  addPost() {
+    return;
+  }
 }

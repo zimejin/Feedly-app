@@ -7,9 +7,12 @@ import { Feeds } from '../../shared/models';
   selector: 'app-user-feed',
   template: `
     <div class="content mat-elevation-z8">
-      <ng-container *ngFor="let feed of feeds | async">
+      <ng-container *ngFor="let feed of feeds | async; let i = index">
         <span>
           <p>
+            <!-- Create Post -->
+            <app-create-post *ngIf="i === 0"></app-create-post>
+            <!-- NewsFeeds -->
             <app-post [post]="feed"></app-post>
           </p>
         </span>
@@ -27,8 +30,8 @@ export class UserFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.feeds.subscribe(state => {
-      console.log('user feeds => ', state)
-    })
+    this.feeds.subscribe((state) => {
+      console.log('user feeds => ', state);
+    });
   }
 }
