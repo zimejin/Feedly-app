@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   AppComponent,
@@ -20,16 +21,19 @@ const components = [
   UserCardComponent,
   UserFeedComponent,
   HomeFeedComponent,
+  CreatePostComponent,
 ];
 
 @NgModule({
-  declarations: [...components, CreatePostComponent],
+  declarations: [...components],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     StoreModule.forRoot({}, {}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],

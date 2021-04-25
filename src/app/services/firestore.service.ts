@@ -38,7 +38,8 @@ export class FirestoreService {
   }
 
   // Add new feed. Video, Photo, Text from the app
-  addPost() {
-    return;
+  addPost(data: any) {
+    if (!data) return;
+    return this.firestore.collection('feeds').add(data);
   }
 }
