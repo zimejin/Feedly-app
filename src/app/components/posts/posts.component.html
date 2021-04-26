@@ -13,7 +13,7 @@
     </a>
     <p class="post-text-content" *ngIf="post?.message">
       {{ post?.message }}
-      <a href="#" class="more">See more</a>
+      <a href="#" class="more" *ngIf="length > 30">...See more</a>
     </p>
     <div class="row" *ngIf="post?.photo">
       <div class="container">

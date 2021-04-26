@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../../services/firestore.service';
 import { Feeds } from '../../shared/models';
@@ -59,7 +64,7 @@ export class HomeFeedComponent implements OnInit {
     return {
       message: this.message,
       user: 'Janae Randolph',
-      time: '3 minutes ago',
+      time: Date.now(),
       id: 1,
       photo: '',
       video: '',
@@ -68,7 +73,14 @@ export class HomeFeedComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
-      message: ['', [Validators.required]],
+      message: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(25),
+          Validators.maxLength(300),
+        ],
+      ],
     });
   }
 
@@ -78,8 +90,20 @@ export class HomeFeedComponent implements OnInit {
 
   // Make request to submit the new post to firebase
   submitPost() {
-    console.log('new post to firebase:', this.form.value);
-    this.firesStore.addPost(this.body());
-    this.form.reset();
+    try {
+      if (this.form.valid) {
+        // new post to firebase
+        this.firesStore.addPost(this.body());
+
+        // Reset the form to it's initial state
+        this.form.reset();
+      } else {
+        alert(
+          'Please ensure your message is at least 25 characters long and less than 300 characters'
+        );
+      }
+    } catch (error) {
+      console.log(`Error occured while submiting`, error);
+    }
   }
 }

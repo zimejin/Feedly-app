@@ -26,13 +26,11 @@ import { Contacts } from './shared/models';
     <!-- Sidebar -->
     <mat-sidenav-container>
       <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-        <img
-          class="avatar mat-elevation-z8"
-          src="http://uitheme.net/sociala/images/user-12.png"
-        />
-
-        <h4 class="name">Jennifer Sharmila</h4>
-        <p class="designation">@JennySharmila</p>
+        <ng-container *ngIf="currentUser">
+          <img class="avatar mat-elevation-z8" [src]="currentUser?.avatar" />
+          <h4 class="name">{{ currentUser?.name }}</h4>
+          <p class="designation">{{ currentUser?.status }}</p>
+        </ng-container>
         <br />
         <br />
         <button
@@ -73,7 +71,9 @@ export class AppComponent implements OnInit {
     private observer: BreakpointObserver,
     private router: Router,
     private firestore: FirestoreService
-  ) {}
+  ) {
+    this.createUser();
+  }
 
   ngOnInit() {
     this.contacts = this.firestore.getContacts();
@@ -93,7 +93,24 @@ export class AppComponent implements OnInit {
 
   showFeed(user: User) {
     console.log(user);
-
     this.router.navigate(['./user-feed']);
+  }
+
+  get currentUser() {
+    let user: string = window.localStorage.getItem('currentUser') || '';
+    if (user) return JSON.parse(user);
+  }
+
+  createUser() {
+    window.localStorage.setItem(
+      'currentUser',
+      JSON.stringify({
+        name: 'Janae Randolph',
+        id: 1,
+        avatar:
+          'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
+        status: 'Available',
+      })
+    );
   }
 }

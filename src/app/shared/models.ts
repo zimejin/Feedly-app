@@ -4,7 +4,7 @@ export interface Feeds {
   video: string;
   user: string;
   id: number;
-  time: string;
+  time: number | string;
 }
 
 export interface Contacts {
