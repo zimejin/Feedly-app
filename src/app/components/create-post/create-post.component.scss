@@ -1,12 +1,18 @@
 mat-card.card {
   max-width: 400px;
-  min-width: 279px;
 }
 
 @media (min-width: 576px) {
   .card {
     max-width: 550px;
     min-width: 550px;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    max-width: 400px;
+    min-width: 279px !important;
   }
 }
 
