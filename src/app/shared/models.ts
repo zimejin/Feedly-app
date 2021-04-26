@@ -6,3 +6,10 @@ export interface Feeds {
   id: number;
   time: string;
 }
+
+export interface Contacts {
+  name: string;
+  avatar: string;
+  id: number;
+  status: string;
+}

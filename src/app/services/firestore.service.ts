@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { Feeds } from '../shared/models';
+import { Contacts, Feeds } from '../shared/models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +10,10 @@ export class FirestoreService {
   constructor(private firestore: AngularFirestore) {}
 
   // Fetch list of contacts
-  getContacts() {
-    let items = this.firestore.collection('contacts').valueChanges();
-
-    items.subscribe((state) => {
-      console.log('list of contacts:', state);
-    });
-    return this.firestore.collection('contacts').valueChanges();
+  getContacts(): Observable<Contacts[]> {
+    return this.firestore.collection('contacts').valueChanges() as Observable<
+      Contacts[]
+    >;
   }
 
   // Returns the news feeds for all contacts
