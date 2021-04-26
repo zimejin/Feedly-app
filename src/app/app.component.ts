@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FirestoreService } from './services/firestore.service';
 import { Observable } from 'rxjs';
 import { Contacts } from './shared/models';
+import { UtilitiesService } from './services/utilities.service';
 
 @Component({
   selector: 'app-root',
@@ -66,10 +67,12 @@ export class AppComponent implements OnInit {
   sidenav!: MatSidenav;
 
   contacts!: Observable<Contacts[]>;
+  currentUser: any;
 
   constructor(
     private observer: BreakpointObserver,
     private router: Router,
+    private utils: UtilitiesService,
     private firestore: FirestoreService
   ) {
     this.createUser();
@@ -77,6 +80,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.contacts = this.firestore.getContacts();
+    this.currentUser = this.utils.currentUser;
   }
 
   ngAfterViewInit() {
@@ -96,11 +100,6 @@ export class AppComponent implements OnInit {
     this.router.navigate(['./user-feed']);
   }
 
-  get currentUser() {
-    let user: string = window.localStorage.getItem('currentUser') || '';
-    if (user) return JSON.parse(user);
-  }
-
   createUser() {
     window.localStorage.setItem(
       'currentUser',
@@ -110,6 +109,7 @@ export class AppComponent implements OnInit {
         avatar:
           'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
         status: 'Available',
+        lastlogin: Date.now(),
       })
     );
   }

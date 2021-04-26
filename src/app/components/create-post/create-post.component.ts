@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { UtilitiesService } from 'src/app/services/utilities.service';
+import { Contacts } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-create-post',
@@ -8,15 +10,19 @@ import { FormGroup } from '@angular/forms';
       <mat-card class="card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Janae Randolph</mat-card-title>
-          <mat-card-subtitle>2 hours ago</mat-card-subtitle>
+          <mat-card-title>
+            {{ user?.name }}
+          </mat-card-title>
+          <mat-card-subtitle *ngIf="relativeTime">
+            {{ relativeTime }}
+          </mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
           <div class="card-body p-0 mt-3 position-relative">
             <figure class="avatar position-absolute ms-2 mt-1 top-5">
               <img
-                src="http://uitheme.net/sociala/images/user-8.png"
+                [src]="user?.avatar"
                 alt="image"
                 class="shadow-sm rounded-circle w30"
               />
@@ -49,13 +55,20 @@ import { FormGroup } from '@angular/forms';
 })
 export class CreatePostComponent implements OnInit {
   @Input() parent!: FormGroup;
+  @Input()
+  user!: Contacts | undefined | null;
 
   // Event emitters
   @Output() favorite = new EventEmitter();
   @Output() comment = new EventEmitter();
   @Output() newPost = new EventEmitter();
 
-  constructor() {}
+  constructor(public utils: UtilitiesService) {}
 
   ngOnInit(): void {}
+
+  get relativeTime() {
+    if (this.user)
+      return this.utils.timeSince(new Date(this.user.lastlogin as any));
+  }
 }

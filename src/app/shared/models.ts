@@ -12,4 +12,5 @@ export interface Contacts {
   avatar: string;
   id: number;
   status: string;
+  lastlogin?: string | number;
 }

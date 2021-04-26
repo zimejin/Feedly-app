@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { UtilitiesService } from 'src/app/services/utilities.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { Feeds } from '../../shared/models';
 
@@ -18,6 +19,7 @@ import { Feeds } from '../../shared/models';
         <p>
           <app-create-post
             [parent]="form"
+            [user]="utils?.currentUser"
             (newPost)="submitPost()"
             (favorite)="addToFavorite($event)"
           ></app-create-post>
@@ -45,7 +47,8 @@ export class HomeFeedComponent implements OnInit {
 
   constructor(
     protected firesStore: FirestoreService,
-    protected fb: FormBuilder
+    protected fb: FormBuilder,
+    public utils: UtilitiesService
   ) {
     this.feeds = this.firesStore.newsFeedAll();
   }

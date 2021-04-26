@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Contacts } from '../shared/models';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,11 @@ export class UtilitiesService {
           : ' ' + timeStamp.getFullYear();
       return day + ' ' + month + year;
     }
+  }
+
+  get currentUser(): Contacts | null {
+    let user: string = window.localStorage.getItem('currentUser') || '';
+    if (user) return JSON.parse(user);
+    else return null;
   }
 }

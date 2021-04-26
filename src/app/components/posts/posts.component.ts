@@ -4,7 +4,45 @@ import { Feeds } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-post',
-  templateUrl: './posts.component.html',
+  template: `<mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title *ngIf="post?.user">{{ post?.user }} </mat-card-title>
+      <mat-card-subtitle *ngIf="post?.time">
+        {{ getRelativeTime(post) }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <a href="" class="video-btn" *ngIf="post?.video">
+        <video autoplay="" loop="" class="video">
+          <source [src]="post?.video" type="video/mp4" />
+        </video>
+      </a>
+      <p class="post-text-content" *ngIf="post?.message">
+        {{ post?.message }}
+        <a href="#" class="more" *ngIf="length > 30">...See more</a>
+      </p>
+      <div class="row" *ngIf="post?.photo">
+        <div class="container">
+          <a href="" data-lightbox="roadtr">
+            <img [src]="post?.photo" class="image" alt="image" />
+          </a>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-fab color="accent">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <button mat-fab color="warn">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-fab>
+        <mat-icon>comment</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card> `,
   styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
@@ -13,17 +51,13 @@ export class PostsComponent implements OnInit {
 
   constructor(private utils: UtilitiesService) {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      console.log('Time since => ', this.utils.timeSince('1619464008973'));
-    }, 5000);
-  }
+  ngOnInit(): void {}
 
   get length(): number {
     return this.post.message.length;
   }
 
-  getRelativeTime(oldtime: string) {
-    if (oldtime) return this.utils.timeSince(oldtime);
+  getRelativeTime(feed: Feeds) {
+    if (feed) return this.utils.timeSince(new Date(feed.time));
   }
 }

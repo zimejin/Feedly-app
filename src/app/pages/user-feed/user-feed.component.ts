@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { UtilitiesService } from 'src/app/services/utilities.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { Feeds } from '../../shared/models';
 import { HomeFeedComponent } from '../home-feed/home-feed.component';
@@ -14,6 +15,7 @@ import { HomeFeedComponent } from '../home-feed/home-feed.component';
         <p>
           <app-create-post
             [parent]="form"
+            [user]="utils?.currentUser"
             (newPost)="submitPost()"
             (favorite)="addToFavorite($event)"
           ></app-create-post>
@@ -36,8 +38,12 @@ export class UserFeedComponent extends HomeFeedComponent implements OnInit {
   @Input()
   feeds!: Observable<Feeds[]>;
 
-  constructor(firesStore: FirestoreService, fb: FormBuilder) {
-    super(firesStore, fb);
+  constructor(
+    firesStore: FirestoreService,
+    fb: FormBuilder,
+    utils: UtilitiesService
+  ) {
+    super(firesStore, fb, utils);
     this.feeds = this.firesStore.newsFeedAll();
     this.feeds.subscribe((state) => {
       console.log('user feeds => ', state);
