@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UtilitiesService } from 'src/app/services/utilities.service';
-import { Contacts } from 'src/app/shared/models';
+import { Contacts } from 'src/app/shared/models/models';
 
 @Component({
   selector: 'app-create-post',

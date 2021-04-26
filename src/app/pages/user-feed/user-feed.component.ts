@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { FirestoreService } from '../../services/firestore.service';
-import { Feeds } from '../../shared/models';
+import { Feeds } from '../../shared/models/models';
 import { HomeFeedComponent } from '../home-feed/home-feed.component';
 
 @Component({

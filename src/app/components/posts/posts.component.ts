@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UtilitiesService } from 'src/app/services/utilities.service';
-import { Feeds } from 'src/app/shared/models';
+import { Feeds } from 'src/app/shared/models/models';
 
 @Component({
   selector: 'app-post',

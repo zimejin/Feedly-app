@@ -5,7 +5,7 @@ import { User } from './components/user-card/user-card.component';
 import { Router } from '@angular/router';
 import { FirestoreService } from './services/firestore.service';
 import { Observable } from 'rxjs';
-import { Contacts } from './shared/models';
+import { Contacts } from './shared/models/models';
 import { UtilitiesService } from './services/utilities.service';
 
 @Component({
