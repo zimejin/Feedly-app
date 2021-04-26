@@ -6,8 +6,8 @@ import { Contacts } from 'src/app/shared/models/models';
 @Component({
   selector: 'app-create-post',
   template: `
-    <form [formGroup]="parent">
-      <mat-card class="card">
+    <mat-card class="card">
+      <form [formGroup]="parent">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>
@@ -48,8 +48,8 @@ import { Contacts } from 'src/app/shared/models/models';
             <mat-icon>comment</mat-icon>
           </button>
         </mat-card-actions>
-      </mat-card>
-    </form>
+      </form>
+    </mat-card>
   `,
   styleUrls: ['./create-post.component.scss'],
 })

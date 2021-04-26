@@ -40,3 +40,9 @@ export class FirestoreService {
     return this.firestore.collection('feeds').add(data);
   }
 }
+
+/*
+
+  Firestore operations, which does not use the http client from Angular. So the requests can not be intercepted.
+
+*/

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { FirestoreService } from '../../services/firestore.service';
 import { Feeds } from '../../shared/models/models';
@@ -45,9 +46,7 @@ export class UserFeedComponent extends HomeFeedComponent implements OnInit {
   ) {
     super(firesStore, fb, utils);
     this.feeds = this.firesStore.newsFeedAll();
-    this.feeds.subscribe((state) => {
-      console.log('user feeds => ', state);
-    });
+    //let test = this.feeds.pipe(filter((feed:Feeds) => feed.id = 1)).subscribe();
   }
 
   ngOnInit(): void {

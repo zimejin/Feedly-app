@@ -8,6 +8,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
+// Angular interceptor only works for http request made with the http client
 @Injectable()
 export class GlobalRequestHttpInterceptor {
   constructor() {}
@@ -47,8 +48,7 @@ export class GlobalRequestHttpInterceptor {
     return request.clone({
       setHeaders: {
         ClientID: 'Feedly',
-        Secret: '',
-        Authorization: '',
+        Authorization: 'Insert Secret JWT',
       },
     }) as HttpRequest<any>;
   }
