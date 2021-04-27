@@ -1,5 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { filter, map, take, tap } from 'rxjs/operators';
 import { SharedStateService } from 'src/app/services/global-state.service';
@@ -38,20 +45,25 @@ import { HomeFeedComponent } from '../home-feed/home-feed.component';
 })
 export class UserFeedComponent
   extends HomeFeedComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   feeds!: Observable<Feeds[]>;
 
-  subscription!: Subscription;
-  selectedContact!: Contacts;
+  private subscription!: Subscription;
+  private selectedContact!: Contacts;
 
   constructor(
     firesStore: FirestoreService,
     fb: FormBuilder,
     utils: UtilitiesService,
-    private sharedState: SharedStateService
+    private sharedState: SharedStateService,
+    private router: Router
   ) {
     super(firesStore, fb, utils);
+  }
+
+  ngOnInit(): void {
+    this.createForm();
 
     // Get the selected contact from theFeeds[] store
     this.subscription = this.sharedState.selectedContact.subscribe(
@@ -59,13 +71,24 @@ export class UserFeedComponent
     );
   }
 
-  ngOnInit(): void {
-    this.createForm();
-
+  ngAfterViewInit() {
     // Load the selected user feeds
+    this.getFeed();
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  private getFeed() {
+    console.log('Selected contact:', this.selectedContact);
+
+    if (this.selectedContact) {
+      this.feeds = (this.firesStore.getFeed(
+        this.selectedContact.id
+      ) as unknown) as Observable<Feeds[]>;
+    } else {
+      this.router.navigate(['/home-feed']);
+    }
   }
 }
