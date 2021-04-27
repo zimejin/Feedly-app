@@ -79,7 +79,7 @@ export class HomeFeedComponent implements OnInit {
       video: this.getControlValue('video'),
 
       // From current user
-      user: this.utils.currentUser?.name || '',
+      user: this.utils.currentUser,
       id: this.utils.currentUser?.id || 0,
     };
   }

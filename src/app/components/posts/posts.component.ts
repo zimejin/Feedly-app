@@ -6,8 +6,12 @@ import { Feeds } from 'src/app/shared/models/models';
   selector: 'app-post',
   template: `<mat-card class="card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title *ngIf="post?.user">{{ post?.user }} </mat-card-title>
+      <div
+        mat-card-avatar
+        class="header-image"
+        [ngStyle]="{ 'background-image': 'url(' + post?.user?.avatar }"
+      ></div>
+      <mat-card-title *ngIf="post?.user">{{ post?.user?.name }} </mat-card-title>
       <mat-card-subtitle *ngIf="post?.time">
         {{ getRelativeTime(post) }}
       </mat-card-subtitle>

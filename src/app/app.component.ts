@@ -98,16 +98,23 @@ export class AppComponent implements OnInit {
   }
 
   createUser() {
-    window.localStorage.setItem(
-      'currentUser',
-      JSON.stringify({
-        name: 'Janae Randolph',
-        id: 1,
-        avatar:
-          'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
-        status: 'Available',
-        lastlogin: Date.now(),
-      })
-    );
+    let user1 = {
+      name: 'Janae Randolph',
+      id: 1,
+      avatar:
+        'https://images.unsplash.com/photo-1541710430735-5fca14c95b00?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
+      status: 'Available',
+      lastlogin: Date.now(),
+    };
+
+    let user2 = {
+      name: 'Desmond Cervantes',
+      id: 2,
+      avatar: 'http://uitheme.net/sociala/images/user-12.png',
+      status: 'Available',
+      lastlogin: Date.now(),
+    };
+
+    window.localStorage.setItem('currentUser', JSON.stringify(user1));
   }
 }

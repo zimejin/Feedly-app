@@ -9,7 +9,11 @@ import { Contacts } from 'src/app/shared/models/models';
     <mat-card class="card">
       <form [formGroup]="parent">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
+          <div
+            mat-card-avatar
+            class="header-image"
+            [ngStyle]="{ 'background-image': 'url(' + user?.avatar + ')' }"
+          ></div>
           <mat-card-title>
             {{ user?.name }}
           </mat-card-title>

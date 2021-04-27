@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { filter, take, tap } from 'rxjs/operators';
+import { filter, map, take, tap } from 'rxjs/operators';
 import { SharedStateService } from 'src/app/services/global-state.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { FirestoreService } from '../../services/firestore.service';
@@ -49,23 +49,20 @@ export class UserFeedComponent
     firesStore: FirestoreService,
     fb: FormBuilder,
     utils: UtilitiesService,
-
     private sharedState: SharedStateService
   ) {
     super(firesStore, fb, utils);
+
+    // Get the selected contact from theFeeds[] store
+    this.subscription = this.sharedState.selectedContact.subscribe(
+      (state) => (this.selectedContact = state)
+    );
   }
 
   ngOnInit(): void {
     this.createForm();
 
-    this.subscription = this.sharedState.selectedContact.subscribe((state) => {
-      if (state) {
-        this.feeds = this.firesStore.newsFeedAll().pipe(
-          tap((response) => console.log('user feeds => ', response)),
-          filter((feed: any) => feed.id === this.selectedContact.id)
-        );
-      }
-    });
+    // Load the selected user feeds
   }
 
   ngOnDestroy() {

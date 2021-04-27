@@ -2,7 +2,7 @@ export interface Feeds {
   photo: string;
   message: string;
   video: string;
-  user: string;
+  user: Contacts | null;
   id: number;
   time: number | string;
 }

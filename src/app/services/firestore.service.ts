@@ -18,15 +18,16 @@ export class FirestoreService {
 
   // Returns the news feeds for all contacts
   newsFeedAll(): Observable<Feeds[]> {
-    const feeds = this.firestore
-      .collection('feeds')
-      .valueChanges() as Observable<Feeds[]>;
-    return feeds;
+    const feeds = this.firestore.collection('feeds').valueChanges();
+    return feeds as Observable<Feeds[]>;
   }
 
   // Fetch user feed using user id
-  getFeed(id: number) {
-    return;
+  getFeed(id: number): Observable<Feeds[]> {
+    const feeds = this.firestore.collection('feeds');
+    return (this.firestore.collection('feeds', (ref) =>
+      ref.where('id', '==', id)
+    ) as unknown) as Observable<Feeds[]>;
   }
 
   // Upload items to feed using unique ID
