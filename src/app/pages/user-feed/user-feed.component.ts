@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { filter, take, tap } from 'rxjs/operators';
+import { SharedStateService } from 'src/app/services/global-state.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
 import { FirestoreService } from '../../services/firestore.service';
-import { Feeds } from '../../shared/models/models';
+import { Contacts, Feeds } from '../../shared/models/models';
 import { HomeFeedComponent } from '../home-feed/home-feed.component';
 
 @Component({
@@ -35,21 +36,39 @@ import { HomeFeedComponent } from '../home-feed/home-feed.component';
   `,
   styleUrls: ['./user-feed.component.scss'],
 })
-export class UserFeedComponent extends HomeFeedComponent implements OnInit {
+export class UserFeedComponent
+  extends HomeFeedComponent
+  implements OnInit, OnDestroy {
   @Input()
   feeds!: Observable<Feeds[]>;
+
+  subscription!: Subscription;
+  selectedContact!: Contacts;
 
   constructor(
     firesStore: FirestoreService,
     fb: FormBuilder,
-    utils: UtilitiesService
+    utils: UtilitiesService,
+
+    private sharedState: SharedStateService
   ) {
     super(firesStore, fb, utils);
-    this.feeds = this.firesStore.newsFeedAll();
-    //let test = this.feeds.pipe(filter((feed:Feeds) => feed.id = 1)).subscribe();
   }
 
   ngOnInit(): void {
     this.createForm();
+
+    this.subscription = this.sharedState.selectedContact.subscribe((state) => {
+      if (state) {
+        this.feeds = this.firesStore.newsFeedAll().pipe(
+          tap((response) => console.log('user feeds => ', response)),
+          filter((feed: any) => feed.id === this.selectedContact.id)
+        );
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

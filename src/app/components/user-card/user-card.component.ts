@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Contacts } from 'src/app/shared/models/models';
 
-export interface User {
-  name?: string;
-  avatar?: string;
-  status?: string;
-}
 @Component({
   selector: 'app-user-card',
   template: `
@@ -27,8 +23,9 @@ export interface User {
   styleUrls: ['./user-card.component.scss'],
 })
 export class UserCardComponent implements OnInit {
-  @Input() user: User = {};
-  @Output() onClick = new EventEmitter<User>();
+  @Input()
+  user!: Contacts;
+  @Output() onClick = new EventEmitter<Contacts>();
 
   constructor() {}
 

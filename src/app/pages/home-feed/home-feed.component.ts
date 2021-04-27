@@ -50,11 +50,11 @@ export class HomeFeedComponent implements OnInit {
     protected fb: FormBuilder,
     public utils: UtilitiesService
   ) {
-    this.feeds = this.firesStore.newsFeedAll();
+    this.createForm();
   }
 
   ngOnInit(): void {
-    this.createForm();
+    this.feeds = this.firesStore.newsFeedAll();
   }
 
   get message(): string {
@@ -63,14 +63,24 @@ export class HomeFeedComponent implements OnInit {
     else return '';
   }
 
+  getControlValue(name: string): string {
+    let control = this.form.get(name);
+    if (control) return control.value as string;
+    else return '';
+  }
+
   body(): Feeds {
     return {
-      message: this.message,
-      user: 'Janae Randolph',
       time: Date.now(),
-      id: 1,
-      photo: '',
-      video: '',
+
+      // From reactive form controls
+      message: this.message,
+      photo: this.getControlValue('photo'),
+      video: this.getControlValue('video'),
+
+      // From current user
+      user: this.utils.currentUser?.name || '',
+      id: this.utils.currentUser?.id || 0,
     };
   }
 
@@ -84,12 +94,13 @@ export class HomeFeedComponent implements OnInit {
           Validators.maxLength(300),
         ],
       ],
+      photo: [''],
+      video: [''],
     });
   }
 
-  addToFavorite(e: any) {
-    console.log(e);
-  }
+  // TODO
+  addToFavorite(e: any) {}
 
   // Make request to submit the new post to firebase
   submitPost() {

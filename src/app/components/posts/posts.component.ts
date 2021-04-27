@@ -21,7 +21,6 @@ import { Feeds } from 'src/app/shared/models/models';
       </a>
       <p class="post-text-content" *ngIf="post?.message">
         {{ post?.message }}
-        <a href="#" class="more" *ngIf="length > 30">...See more</a>
       </p>
       <div class="row" *ngIf="post?.photo">
         <div class="container">
@@ -52,10 +51,6 @@ export class PostsComponent implements OnInit {
   constructor(private utils: UtilitiesService) {}
 
   ngOnInit(): void {}
-
-  get length(): number {
-    return this.post.message.length;
-  }
 
   getRelativeTime(feed: Feeds) {
     if (feed) return this.utils.timeSince(new Date(feed.time));

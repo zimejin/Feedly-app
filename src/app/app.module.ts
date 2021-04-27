@@ -8,7 +8,6 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { UserFeedComponent } from './pages/user-feed/user-feed.component';
 import { HomeFeedComponent } from './pages/home-feed/home-feed.component';
-import { StoreModule } from '@ngrx/store';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -16,6 +15,8 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalRequestHttpInterceptor } from './shared/interceptors/request-interceptor';
+import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
+import { HomeButtonComponent } from './components/home-button/home-button.component';
 
 const components = [
   AppComponent,
@@ -24,9 +25,12 @@ const components = [
   UserFeedComponent,
   HomeFeedComponent,
   CreatePostComponent,
+  UserAvatarComponent,
+  HomeButtonComponent,
 ];
 
 @NgModule({
+  entryComponents: [...components],
   declarations: [...components],
   imports: [
     BrowserModule,
@@ -36,7 +40,6 @@ const components = [
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({}, {}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [
@@ -49,3 +52,12 @@ const components = [
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+function userfeedReducer(
+  arg0: {},
+  userfeedReducer: any
+):
+  | any[]
+  | import('@angular/core').Type<any>
+  | import('@angular/core').ModuleWithProviders<{}> {
+  throw new Error('Function not implemented.');
+}
